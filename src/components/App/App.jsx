@@ -49,15 +49,8 @@ function App() {
       buttonText="Add garment" 
       title="New garment" 
       activeModal={activeModal} 
-      handleCloseClick={closeActiveModal}
+      onClose={closeActiveModal}
       >
-    <h2 className="modal__title">{title}</h2>
-        <button
-        onClick={onClose} 
-        type="button" 
-        className="modal__close" >
-            CLOSE
-        </button>
         <label htmlFor="name" className="modal__label">
             Name{""}
             <input 

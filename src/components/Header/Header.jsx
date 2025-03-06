@@ -1,6 +1,6 @@
 import "./Header.css";
-import logo from "../assets/logo.svg";
-import avatar from "../assets/avatar.png";
+import logo from "../../assets/logo.svg";
+import avatar from "../../assets/avatar.png";
 
 function Header({handleAddClick, weatherData}) {
  
@@ -8,24 +8,23 @@ function Header({handleAddClick, weatherData}) {
     month: "long",
     day: "numeric",
   });
-
-  return 
+  return (
     <header className="header">
-      <img className  ="header__logo" src={logo}/>
-      <p className="header__date-and-location">{currentDate}, {weatherData.city}
-      </p>
+      <img className="header__logo" src={logo} alt="Logo" />
+      <p className="header__date-and-location">{currentDate}, {weatherData.city}</p>
       <button 
-      onClick={handleAddClick}
-      type="button" 
-      className="header__add-clothes-btn"
+        onClick={handleAddClick}
+        type="button" 
+        className="header__add-clothes-btn"
       >
         + Add clothes
-        </button>
+      </button>
       <div className="header__user-container">
-      <p className="header__username">Terrence Tegegne</p>
-      <img src= {avatar} alt="Terrence Tegegne" className="header__avatar" />
+        <p className="header__username">Terrence Tegegne</p>
+        <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
       </div>
-    </header>;
+    </header>
+  );
 }
 
 export default Header;

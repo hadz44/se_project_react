@@ -24,7 +24,7 @@ if (filteredOptions.length ===0) {
      <img 
      src={weatherOption?.url} 
      alt={`Card showing ${
-        weatherOptionDay ?.day ? "day" : "night"}time ${
+        weatherOption ?.day ? "day" : "night"}time ${
         weatherOption?.condition
         } weather`} 
      className="weather-card__image"
