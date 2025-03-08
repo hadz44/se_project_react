@@ -43,17 +43,7 @@ function App() {
     })
     .catch(console.error) ;
   },  []);
-  /*React.useEffect(() => {
-    if{location.latitude && location.longitude} {
-      getWeather(location, APIkey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch((err) => <console.log(err));
-    }
-    }, []);
-*/
+
 
   return (
   <div className="page">
@@ -67,7 +57,7 @@ function App() {
       buttonText="Add garment" 
       title="New garment" 
       activeModal={activeModal} 
-      onClose={closeActiveModal}
+      closeModal={closeActiveModal}
        
       >
         <label htmlFor="name" className="modal__label">
@@ -114,7 +104,7 @@ function App() {
     <ItemModal 
     activeModal={activeModal} 
     card={selectedCard} 
-    onClose={closeActiveModal}/>
+    closeModal={closeActiveModal}/>
   </div>
 );
 }

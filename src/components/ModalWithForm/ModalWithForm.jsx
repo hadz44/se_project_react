@@ -1,26 +1,33 @@
+import React, { useState } from "react";
 import "./ModalWithForm.css";
 
-function ModalWithForm({children, buttonText, title, activeModal, onClose}) {
+function ModalWithForm({children, buttonText, title, activeModal, closeModal,escClose, submit
+}) {
+const [imageSrc, setImageSrc] = useState('');
 
-  return (
-    <div  className={'modal ${activeModal === "add-garmant" && "modal__opened"}' }>
+const handlesubmit = (evt) => {
+    preventDefault(evt);
+    console.log("image added:", imageSrc);
+}
+
+  return(
+    <div  className={`modal ${activeModal === "add-garmant" && "modal__opened"}` }>
         <div className="modal__content">
             <h2 className="modal__title">{title}</h2>
             <button 
-            onClick={onClose}
+            onClick={closeModal}
             type="button" 
             className="modal__close">
-            Close
             </button>
-            {children}
-     <form className="modal__form">
+     <form className="modal__form" onSubmit={handlesubmit}>
+      {children}
         <button type="submit" className="modal__submit">
           {buttonText}
           </button>
       </form> 
        </div>
     </div>
-  );
+  )
 }
 
 export default ModalWithForm;
