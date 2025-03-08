@@ -14,7 +14,7 @@ let weatherOption;
 if (filteredOptions.length ===0) {
     weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
 }else{
- weatherOptionDay = filteredOptions[0];
+ weatherOption = filteredOptions[0];
 }
     
     return (

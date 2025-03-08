@@ -1,0 +1,123 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0000004D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.modal_opened {
+    visibility: visible;
+}
+
+.modal__container {
+    background-color: #fff;
+    border: 1px solid #0000004D;
+    border-radius: 20px;
+    position: relative;
+    padding: 28px 28px 36px;
+    width: 100%;
+    max-width: 496px;
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;    
+
+}
+
+.modal__title {
+    line-height: 20px;
+    font-size: 16px;
+    margin: 0;
+}
+
+.modal__close {
+    background-image: url(../images/close.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    height: 16px;
+    width: 16px;
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+
+.modal__label {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/*radio buttons*/
+
+.modal__radio-btns {
+    border: none;
+    padding: 0;
+    margin: 0;
+    gap: 32px;
+}
+
+.modal__label_type_radio {
+    flex-direction: row;
+    gap: 8px;
+    width: 173px;
+    height: 20px;
+    color: #00000080;
+}
+
+.modal__label_type_radio:checked {
+    color: #000;
+}
+
+.modal__submit {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    width: 100%; /* Adjust as needed */
+    box-sizing: border-box; /* Ensures padding is included in total width */
+    text-align: center; /* Centers the text */
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.modal__submit:hover {
+    cursor: pointer;
+    background-color: #00000099;
+    opacity: 1;
+}
+
+/* Item Modal styles*/
+
+.modal__container_type_img {
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    padding: 0;
+}
+  
+.modal__img {
+    max-width: 498px;
+}
