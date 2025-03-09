@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ModalWithForm.css";
 
-function ModalWithForm({children, buttonText, title, activeModal, closeModal,escClose, submit
+function ModalWithForm({children, buttonText, title, isOpen, closeModal,escClose, submit, name,
 }) {
 const [imageSrc, setImageSrc] = useState('');
 
@@ -11,7 +11,7 @@ const handlesubmit = (evt) => {
 }
 
   return(
-    <div  className={`modal ${activeModal === "add-garmant" && "modal__opened"}` }>
+   <div className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}>
         <div className="modal__content">
             <h2 className="modal__title">{title}</h2>
             <button 
