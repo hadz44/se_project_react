@@ -6,8 +6,8 @@ function ModalWithForm({children, buttonText, title, isOpen, closeModal,escClose
 const [imageSrc, setImageSrc] = useState('');
 
 const handlesubmit = (evt) => {
-    preventDefault(evt);
-    console.log("image added:", imageSrc);
+
+    evt.preventDefault();
 }
 
   return(
