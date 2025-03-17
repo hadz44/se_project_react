@@ -27,13 +27,23 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const closeActiveModal= (evt) => {
-    if (evt.key === "Escape") {
-      closeActiveModal(activeModal);
-    }
+  const closeActiveModal = () => {
+    setActiveModal("");
   };
 
-
+  useEffect(() => {
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    
+    document.addEventListener("keydown", handleEscClose);
+    
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -81,21 +91,28 @@ function App() {
          <legend className="modal__legend">Select the weather type:</legend>
          <label htmlFor="hot" className="modal__label modal__label_type_radio">
             <input
-            id="cold"
+            id="hot"
+            name="weather"
             type="radio"
+            value="hot"
             className="modal__radio-input"
             />Hot
          </label>
          <label htmlFor="warm" className="modal__label modal__label_type_radio">
             <input
-            id="cold"
+            id="warm"
+            name="weather"
             type="radio"
+            value="warm"
             className="modal__radio-input"
             />Warm
-         </label><label htmlFor="cold" className="modal__label modal__label_type_radio">
+         </label>
+         <label htmlFor="cold" className="modal__label modal__label_type_radio">
             <input
             id="cold"
+            name="weather"
             type="radio"
+            value="cold"
             className="modal__radio-input"
             />Cold
          </label>
