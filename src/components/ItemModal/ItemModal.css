@@ -1,0 +1,69 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  z-index: 2;
+}
+
+.modal__content_type_image {
+}
+
+.modal__image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  width: 498px;
+  height: 498px;
+}
+
+.modal__footer_container {
+  padding: 8px 32px;
+  background-color: white;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  font-weight: 700;
+}
+.modal__footer {
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.modal__delete {
+  color: red;
+  background-color: transparent;
+  border: none;
+}
+
+.modal__delete-btn {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: 40px; /* Adjust as needed */
+  right: 16px; /* Adjust as needed */
+}

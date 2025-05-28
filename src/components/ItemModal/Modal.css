@@ -1,0 +1,36 @@
+/* Item Modal specific styles */
+.modal__content_type_image {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 498px;
+    height: 610px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.modal__image {
+    width: 100%;
+    height: 498px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.modal__footer {
+    padding: 20px;
+   /* background-color: white;*/
+}
+
+.modal__caption {
+    margin: 0 0 12px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.modal__weather {
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    color: #00000080;
+}
