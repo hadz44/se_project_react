@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import "./AddItemModal.css";
-import ModelWithForm from "../ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-export default function AddItemModal({
-  onClose,
-  isOpen,
-  onAddItemModalSubmit,
-}) {
+function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weatherType, setWeatherType] = useState("");
@@ -17,15 +13,14 @@ export default function AddItemModal({
 
   const handleImageUrlChange = (e) => {
     setImageUrl(e.target.value);
-    console.log("Image URL:", e.target.value);
   };
+
   const handleWeatherTypeChange = (e) => {
     setWeatherType(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onAddItemModalSubmit({ name, imageUrl, weatherType })
       .then(() => {
         setName("");
@@ -34,16 +29,13 @@ export default function AddItemModal({
         onClose();
       })
       .catch((err) => {
-        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
         console.error("Error adding item:", err);
-        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
       });
   };
 
   return (
-    <ModelWithForm
+    <ModalWithForm
       title="New garment"
-      buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
@@ -116,6 +108,11 @@ export default function AddItemModal({
           Cold
         </label>
       </fieldset>
-    </ModelWithForm>
+      <button type="submit" className="modal__submit">
+        Add garment
+      </button>
+    </ModalWithForm>
   );
 }
+
+export default AddItemModal;

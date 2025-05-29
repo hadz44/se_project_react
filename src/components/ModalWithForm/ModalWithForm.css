@@ -2,25 +2,31 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   font-family: "Cabinet Grotesk", sans-serif;
   border: 1px solid #0000004d;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__title {
-  margin: 0 0 24px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+  margin: 0 0 24px;
 }
 
 .modal__label {
@@ -30,27 +36,35 @@
 }
 
 .modal__close {
-  background: transparent;
-  border: none;
   position: absolute;
-  top: 23px;
-  right: 23px;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
   padding: 0;
-  max-width: 16px;
-  max-height: 16px;
-  width: 100%;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+}
+
+.modal__close img {
+  width: 16px;
+  height: 16px;
 }
 
 .modal__content-form {
-  position: relative;
-  padding: 28px 28px 36px;
   background-color: #fff;
+  padding: 28px;
+  border-radius: 20px;
+  position: relative;
+  width: 100%;
   max-width: 496px;
+  box-sizing: border-box;
   max-height: 436px;
   height: 100%;
-  width: 100%;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -61,6 +75,7 @@
   padding: 0;
   width: 100%;
   gap: 32px;
+  overflow-y: auto;
 }
 
 .modal__input {
@@ -127,7 +142,8 @@
   color: #fff;
   padding: 8px 16px 8px 16px;
   cursor: pointer;
-  margin: -57px 0px 0px -5px;
+  margin: 0;
+  align-self: flex-start;
 }
 
 .modal__submit:hover {

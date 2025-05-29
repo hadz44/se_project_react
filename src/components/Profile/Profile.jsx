@@ -1,23 +1,31 @@
+import React from "react";
+import "./Profile.css";
+import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import Sidebar from "../SideBar/SideBar";
 
-import "../Profile/Profile.css";
-
-function Profile({ onCardClick, weatherData, clothingItems, handleAddClick }) {
-  console.log("Profile component rendered with weatherData:", weatherData);
+function Profile({
+  clothingItems,
+  onAddClick,
+  onCardClick,
+  onEditProfile,
+  onLogout,
+  weatherType,
+  onSelectCard,
+  isLoggedIn,
+}) {
   return (
     <div className="profile">
-      <section className="profile__sidebar">
-        <Sidebar />
-      </section>
-      <section className="profile__closet">
+      <SideBar onEditProfile={onEditProfile} onLogout={onLogout} />
+      <div className="profile__content">
         <ClothesSection
-          handleAddClick={handleAddClick}
-          onCardClick={onCardClick}
-          weatherData={weatherData}
           clothingItems={clothingItems}
+          handleAddClick={onAddClick}
+          onCardClick={onCardClick}
+          weatherType={weatherType}
+          onSelectCard={onSelectCard}
+          isLoggedIn={isLoggedIn}
         />
-      </section>
+      </div>
     </div>
   );
 }

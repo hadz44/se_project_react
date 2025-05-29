@@ -1,12 +1,8 @@
-import ItemCard from "../ItemCard/ItemCard";
+import React from "react";
 import "./ClothesSection.css";
+import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
-  console.log(
-    "ClothesSection component rendered with clothingItems:",
-    clothingItems
-  );
-
   return (
     <div className="clothes-section">
       <div className="clothes-section__description">
@@ -16,15 +12,13 @@ function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
         </button>
       </div>
       <ul className="cards__list">
-        {clothingItems.map((item, index) => {
-          return (
-            <ItemCard
-              key={item._id || index}
-              item={item}
-              onCardClick={onCardClick}
-            />
-          );
-        })}
+        {clothingItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={onCardClick}
+          />
+        ))}
       </ul>
     </div>
   );

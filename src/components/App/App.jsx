@@ -29,6 +29,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isOpen, setIsOpen] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -37,15 +38,7 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log("Add Clothes button clicked");
   };
-  const handleActiveModal = () => {
-    setActiveModal("add-garment");
-  };
-
-  useEffect(() => {
-    console.log("Current activeModal:", activeModal);
-  }, [activeModal]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -68,6 +61,7 @@ function App() {
         console.error("Error adding item:", err);
       });
   };
+
   const handleCardDelete = (card) => {
     setActiveModal("delete");
     setCardToDelete(card);
@@ -76,15 +70,22 @@ function App() {
   const handleConfirmCardDelete = () => {
     deleteItem(cardToDelete._id)
       .then((res) => {
-        console.log(res);
-        setClothingItems(([item, ...clothingItems]) =>
-          [item, ...clothingItems].filter(
-            (item) => item._id !== cardToDelete._id
-          )
+        setClothingItems((items) =>
+          items.filter((item) => item._id !== cardToDelete._id)
         );
         closeActiveModal();
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleEditProfile = () => {
+    // Add profile editing functionality
+    console.log("Edit profile clicked");
+  };
+
+  const handleLogout = () => {
+    // Add logout functionality
+    console.log("Logout clicked");
   };
 
   // Get user's location
@@ -99,7 +100,6 @@ function App() {
         },
         (error) => {
           console.error("Error getting location:", error);
-          // Fallback to default coordinates if geolocation fails
           setUserLocation({
             latitude: 38.8918,
             longitude: -76.8894,
@@ -108,7 +108,6 @@ function App() {
       );
     } else {
       console.log("Geolocation is not supported by this browser.");
-      // Fallback to default coordinates if geolocation is not supported
       setUserLocation({
         latitude: 38.8918,
         longitude: -76.8894,
@@ -122,7 +121,6 @@ function App() {
       getWeather(userLocation, APIkey)
         .then((data) => {
           const filteredData = filterWeatherData(data);
-          console.log("Filtered weather data:", filteredData);
           setWeatherData(filteredData);
         })
         .catch(console.error);
@@ -132,13 +130,13 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log("Fetched clothing items:", data);
         setClothingItems(data);
       })
       .catch((error) => {
         console.error("Error fetching items:", error.message);
       });
   }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleSwitchChange }}
@@ -157,27 +155,28 @@ function App() {
                 />
               }
             />
-
             <Route
               path="/profile"
               element={
                 <Profile
-                  onCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
                   clothingItems={clothingItems}
-                  weatherData={weatherData}
+                  onAddClick={handleAddClick}
+                  onCardClick={handleCardClick}
+                  onEditProfile={handleEditProfile}
+                  onLogout={handleLogout}
+                  weatherType={weatherData.type}
+                  onSelectCard={handleCardClick}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />
           </Routes>
-
           <Footer year={new Date().getFullYear()} />
         </div>
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
-          handleCloseModal={closeActiveModal}
         />
         <ItemModal
           activeModal={activeModal}
@@ -185,13 +184,11 @@ function App() {
           onClose={closeActiveModal}
           onDelete={handleCardDelete}
         />
-
         <DeleteItemModal
           activeModal={activeModal}
           onConfirm={handleConfirmCardDelete}
           onClose={closeActiveModal}
           isOpen={activeModal === "delete"}
-          onDelete={handleCardDelete}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
