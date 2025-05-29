@@ -28,6 +28,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isOpen, setIsOpen] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
   const handleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -86,15 +87,47 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  // Get user's location
   useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        console.log("Filtered weather data:", filteredData);
-        setWeatherData(filteredData);
-      })
-      .catch(console.error);
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          // Fallback to default coordinates if geolocation fails
+          setUserLocation({
+            latitude: 38.8918,
+            longitude: -76.8894,
+          });
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+      // Fallback to default coordinates if geolocation is not supported
+      setUserLocation({
+        latitude: 38.8918,
+        longitude: -76.8894,
+      });
+    }
   }, []);
+
+  // Update weather data when location changes
+  useEffect(() => {
+    if (userLocation) {
+      getWeather(userLocation, APIkey)
+        .then((data) => {
+          const filteredData = filterWeatherData(data);
+          console.log("Filtered weather data:", filteredData);
+          setWeatherData(filteredData);
+        })
+        .catch(console.error);
+    }
+  }, [userLocation]);
 
   useEffect(() => {
     getItems()

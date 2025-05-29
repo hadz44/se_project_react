@@ -103,12 +103,12 @@ export const clothingItems = [
 export const defaultWeatherOptions = {
   day: {
     url: new URL("../assets/day/default.png", import.meta.url).href,
-
-    night: {
-      url: new URL("../assets/night/default.png", import.meta.url).href,
-    },
+  },
+  night: {
+    url: new URL("../assets/night/default.png", import.meta.url).href,
   },
 };
+
 export const coordinates = {
   latitude: 38.8918,
   longitude: -76.8894,

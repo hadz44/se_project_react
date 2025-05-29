@@ -6,6 +6,15 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 
 function Main({ weatherData, handleCardClick, clothingItems = [] }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  console.log("Weather data in Main:", weatherData);
+  console.log("Clothing items in Main:", clothingItems);
+  
+  const filteredItems = clothingItems.filter((item) => {
+    console.log("Comparing item weather:", item.weather, "with weather type:", weatherData.type);
+    return item.weather.toLowerCase() === weatherData.type.toLowerCase();
+  });
+  console.log("Filtered items:", filteredItems);
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -19,19 +28,15 @@ function Main({ weatherData, handleCardClick, clothingItems = [] }) {
         </p>
 
         <ul className="cards__list">
-          {clothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                />
-              );
-            })}
+          {filteredItems.map((item) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleCardClick}
+              />
+            );
+          })}
         </ul>
       </section>
     </main>

@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
+    weekday: "long",
     month: "long",
     day: "numeric",
+    year: "numeric"
   });
   return (
     <header className="header">
