@@ -14,9 +14,7 @@ const handleServerResponse = (res) => {
 };
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`).then(handleServerResponse);
 }
 
 function addItem({ name, imageUrl, weather }) {

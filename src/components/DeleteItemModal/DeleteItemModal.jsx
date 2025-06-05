@@ -1,13 +1,13 @@
 import "./DeleteItemModal.css";
-import closeIcon from "../../assets/close-light.png";
+import { Modal } from "../Modal/Modal";
 
 function DeleteItemModal({
   activeModal,
   onConfirm,
   onClose,
-  isOpen,
   onSubmit,
   onDelete,
+  isLoading,
 }) {
   const handleOnConfirmDelete = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ function DeleteItemModal({
   };
 
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
+    <Modal name="delete" isOpen={activeModal === "delete"} onClose={onClose}>
       <div className="delete-modal__content">
         <h2 className="delete-modal__text">
           Are you sure you want to delete this item?
@@ -23,27 +23,21 @@ function DeleteItemModal({
           This action is irreversible.
           <br />
         </h2>
-        <button onClick={onClose} className="modal__close" type="button">
-          <img
-            className="delete-modal__close-icon"
-            src={closeIcon}
-            alt="close"
-          />
-        </button>
         <form className="modal__form">
           <button
             className="delete-modal__submit"
             type="submit"
             onClick={handleOnConfirmDelete}
+            disabled={isLoading}
           >
-            Yes, delete item
+            {isLoading ? 'Deleting...' : 'Yes, delete item'}
           </button>
           <button className="cancel__submit" type="button" onClick={onClose}>
             Cancel
           </button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 }
 

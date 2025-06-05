@@ -1,27 +1,15 @@
 import React from "react";
 import "./ModalWithForm.css";
-import closeIcon from "../../assets/close-light.png";
+import { Modal } from "../Modal/Modal";
 
-function ModalWithForm({
-  children,
-  title,
-  activeModal,
-  isOpen,
-  onClose,
-  onSubmit,
-}) {
+function ModalWithForm({ name, onClose, isOpen, ...props }) {
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__content-form">
-        <h2 className="modal__title">{title}</h2>
-        <button className="modal__close" type="button" onClick={onClose}>
-          <img src={closeIcon} alt="Close" />
-        </button>
-        <form onSubmit={onSubmit} className="modal__form">
-          {children}
-        </form>
-      </div>
-    </div>
+    <Modal name={name} onClose={onClose} isOpen={isOpen}>
+      <h2 className='modal__title'>{props.title}</h2>
+      <form onSubmit={props.onSubmit} className="modal__form">
+        {props.children}
+      </form>
+    </Modal>
   );
 }
 

@@ -4,7 +4,6 @@
 
 .clothes-section__description {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -14,7 +13,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  margin: 0;
+  margin: 20px;
 }
 
 .clothes-section__btn {

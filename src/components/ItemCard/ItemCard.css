@@ -43,6 +43,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin-right: 21px;
 }
 
 @media screen and (max-width: 380px) {

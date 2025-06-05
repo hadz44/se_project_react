@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/api";
-import DeleteItemModal from "../DeleItemModal/DeleteItemModal";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 
 const APIkey = "a55a98aaee04d0285bcba725026a08a1";
 
@@ -27,9 +27,9 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isOpen, setIsOpen] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -49,6 +49,7 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
+    setIsLoading(true);
     return addItem({ name, weather: weatherType, imageUrl })
       .then((res) => {
         setClothingItems((prevItems) => [
@@ -59,10 +60,14 @@ function App() {
       .then(closeActiveModal)
       .catch((err) => {
         console.error("Error adding item:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const handleCardDelete = (card) => {
+    setIsLoading(true);
     setActiveModal("delete");
     setCardToDelete(card);
   };
@@ -75,7 +80,10 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleEditProfile = () => {
@@ -177,6 +185,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
+          isLoading={isLoading}
         />
         <ItemModal
           activeModal={activeModal}
@@ -189,6 +198,7 @@ function App() {
           onConfirm={handleConfirmCardDelete}
           onClose={closeActiveModal}
           isOpen={activeModal === "delete"}
+          isLoading={isLoading}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

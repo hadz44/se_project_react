@@ -1,3 +1,5 @@
+/* Removed common modal styles */
+
 .modal {
   position: fixed;
   top: 0;
@@ -27,12 +29,14 @@
   font-size: 16px;
   line-height: 20px;
   margin: 0 0 24px;
+  text-align: left;
 }
 
 .modal__label {
   position: relative;
   display: block;
   margin-bottom: 24px;
+  text-align: left;
 }
 
 .modal__close {
@@ -51,8 +55,8 @@
 }
 
 .modal__close img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 .modal__content-form {
@@ -74,8 +78,6 @@
   flex-direction: column;
   padding: 0;
   width: 100%;
-  gap: 32px;
-  overflow-y: auto;
 }
 
 .modal__input {
@@ -99,6 +101,7 @@
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 12px;
+  text-align: left;
 }
 
 .modal__radio-button {
@@ -112,10 +115,11 @@
   flex-direction: column;
   border: none;
   padding: 0;
-  margin: 0 0 24px;
+  margin-top: 24px;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+  align-items: flex-start;
 }
 
 .modal__radio-input {
@@ -130,6 +134,7 @@
   line-height: 20px;
 }
 
+/*
 .modal__submit {
   border-radius: 4px;
   border-style: none;
@@ -151,6 +156,7 @@
   color: #fff;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+*/
 
 .modal__weather {
   margin-top: -26px;

@@ -42,6 +42,7 @@
   font-size: 20px;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .header__avatar-container {

@@ -1,5 +1,5 @@
 import "./ItemModal.css";
-import closeIcon from "../../assets/close-light.png";
+import { Modal } from "../Modal/Modal";
 
 function ItemModal({ activeModal, onClose, card, onDelete }) {
   console.log("Card passed to ItemModal:", card);
@@ -8,12 +8,8 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
   }
 
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+    <Modal name="preview" isOpen={activeModal === "preview"} onClose={onClose}>
       <div className="modal__content modal__content_type_image">
-        <button className="modal__close" type="button" onClick={onClose}>
-          <img src={closeIcon} alt="Close" />
-        </button>
-
         {console.log(card.imageUrl)}
         <img
           src={card.imageUrl}
@@ -33,7 +29,7 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
 
