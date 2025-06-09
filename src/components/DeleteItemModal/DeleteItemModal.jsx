@@ -30,7 +30,7 @@ function DeleteItemModal({
             onClick={handleOnConfirmDelete}
             disabled={isLoading}
           >
-            {isLoading ? 'Deleting...' : 'Yes, delete item'}
+            {isLoading ? 'Yes, delete item' : 'Deleting...'}
           </button>
           <button className="cancel__submit" type="button" onClick={onClose}>
             Cancel

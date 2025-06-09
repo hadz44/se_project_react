@@ -18,13 +18,14 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
         />
         <div className="modal__footer_container">
           <div className="modal__footer">
-            <h2 className="modal__caption">{card.name}</h2>
-            <div className="modal__delete-btn">
-              <button className="modal__delete" onClick={() => onDelete(card)}>
-                Delete Item
-              </button>
+            <div className="modal__footer-top">
+              <h2 className="modal__caption">{card.name}</h2>
+              <div className="modal__delete-btn">
+                <button className="modal__delete" onClick={() => onDelete(card)}>
+                  Delete Item
+                </button>
+              </div>
             </div>
-
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
         </div>
