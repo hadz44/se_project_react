@@ -1,5 +1,6 @@
 import "./DeleteItemModal.css";
 import { Modal } from "../Modal/Modal";
+import unionIcon from "../../assets/Union.png";
 
 function DeleteItemModal({
   activeModal,
@@ -17,6 +18,13 @@ function DeleteItemModal({
   return (
     <Modal name="delete" isOpen={activeModal === "delete"} onClose={onClose}>
       <div className="delete-modal__content">
+        <button
+          className="modal__close-in-container"
+          type="button"
+          onClick={onClose}
+        >
+          <img src={unionIcon} alt="Close" />
+        </button>
         <h2 className="delete-modal__text">
           Are you sure you want to delete this item?
           <br />
@@ -30,7 +38,7 @@ function DeleteItemModal({
             onClick={handleOnConfirmDelete}
             disabled={isLoading}
           >
-            {isLoading ? 'Yes, delete item' : 'Deleting...'}
+            {isLoading ? 'Deleting...' : 'Yes, delete item'}
           </button>
           <button className="cancel__submit" type="button" onClick={onClose}>
             Cancel

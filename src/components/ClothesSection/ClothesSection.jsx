@@ -11,10 +11,10 @@ function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
           + Add New
         </button>
       </div>
-      <ul className="cards__list">
+      <ul className="clothes-section__items">
         {clothingItems.map((item) => (
           <ItemCard
-            key={item._id}
+            key={item.id}
             item={item}
             onCardClick={onCardClick}
           />

@@ -44,11 +44,11 @@
   color: #000000;
 }
 
-/* .delete-modal__content {
+.delete-modal__content {
     padding: 40px;
     display: flex;
     flex-direction: column;
-  } */
+  } 
 
 .delete-modal__close-icon {
   width: 24px;
@@ -57,8 +57,11 @@
   color: #000000;
   border: none;
   background-color: #ffffff;
-  margin-top: 24px;
+  margin-top: 20px;
   margin-bottom: 40px;
   position: absolute;
   top: -25px;
+  margin-left: 620px;
+  margin-right: 20px;
+  
 }

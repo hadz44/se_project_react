@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./Modal.css"; // Import the new CSS file
-import closeIcon from "../../assets/close.png";
+import closeIcon from "../../assets/Union.png";
 
 export const Modal = ({ name, onClose, children, isOpen }) => {
   // here is `useEffect` for the `Escape` listener
@@ -27,15 +27,10 @@ export const Modal = ({ name, onClose, children, isOpen }) => {
   // then we add the main wrapper with class `modal`
   return isOpen ? (
     <div className={`modal modal_type_${name} modal_opened`} onClick={handleOverlay}>
-      {/* the container for the contents */}
-      <div className="modal__container">
-        {/* here will be anything you add as `children`*/}
-        {children}
-        {/* add the close button */}
-        <button className="modal__close" type="button" onClick={onClose}>
-          <img src={closeIcon} alt="Close" />
-        </button>
-      </div>
+      {children}
+      <button className="modal__close" type="button" onClick={onClose}>
+        <img src={closeIcon} alt="Close" />
+      </button>
     </div>
   ) : null;
 }; 

@@ -11,6 +11,10 @@ function Main({ weatherData, handleCardClick, clothingItems = [] }) {
   
   const filteredItems = clothingItems.filter((item) => {
     console.log("Comparing item weather:", item.weather, "with weather type:", weatherData.type);
+    // If weather type is empty, show all items
+    if (!weatherData.type) {
+      return true;
+    }
     return item.weather.toLowerCase() === weatherData.type.toLowerCase();
   });
   console.log("Filtered items:", filteredItems);
@@ -31,7 +35,7 @@ function Main({ weatherData, handleCardClick, clothingItems = [] }) {
           {filteredItems.map((item) => {
             return (
               <ItemCard
-                key={item._id}
+                key={item.id}
                 item={item}
                 onCardClick={handleCardClick}
               />

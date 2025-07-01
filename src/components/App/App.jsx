@@ -53,7 +53,7 @@ function App() {
     return addItem({ name, weather: weatherType, imageUrl })
       .then((res) => {
         setClothingItems((prevItems) => [
-          { name, imageUrl, weather: weatherType, _id: res._id },
+          { name, imageUrl, weather: weatherType, id: res.id },
           ...prevItems,
         ]);
       })
@@ -67,16 +67,17 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    setIsLoading(true);
+    setIsLoading(false);
     setActiveModal("delete");
     setCardToDelete(card);
   };
 
   const handleConfirmCardDelete = () => {
-    deleteItem(cardToDelete._id)
+    setIsLoading(true);
+    deleteItem(cardToDelete.id)
       .then((res) => {
         setClothingItems((items) =>
-          items.filter((item) => item._id !== cardToDelete._id)
+          items.filter((item) => item.id !== cardToDelete.id)
         );
         closeActiveModal();
       })
@@ -129,6 +130,7 @@ function App() {
       getWeather(userLocation, APIkey)
         .then((data) => {
           const filteredData = filterWeatherData(data);
+          console.log("Weather data set:", filteredData);
           setWeatherData(filteredData);
         })
         .catch(console.error);
@@ -138,6 +140,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log("Fetched clothing items:", data);
         setClothingItems(data);
       })
       .catch((error) => {

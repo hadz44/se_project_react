@@ -31,7 +31,7 @@ function Header({ handleAddClick, weatherData }) {
       </div>
       <div className="header__right">
         <ToggleSwitch 
-          isChecked={currentTemperatureUnit === "F"} 
+          isChecked={currentTemperatureUnit === "C"} 
           onToggle={handleSwitchChange} 
         />
         <div className="header__actions">
