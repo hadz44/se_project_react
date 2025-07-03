@@ -4,6 +4,7 @@ import unionIcon from "../../assets/Union.png";
 
 function DeleteItemModal({
   activeModal,
+  card,
   onConfirm,
   onClose,
   onSubmit,
@@ -11,8 +12,9 @@ function DeleteItemModal({
   isLoading,
 }) {
   const handleOnConfirmDelete = (e) => {
+    console.log("Delete itemModal:", card);
     e.preventDefault();
-    onConfirm();
+    onConfirm(card);
   };
 
   return (

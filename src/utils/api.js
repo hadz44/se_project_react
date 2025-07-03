@@ -24,8 +24,8 @@ function addItem({ name, imageUrl, weather }) {
   });
 }
 
-function deleteItem(id) {
-  return request(`${baseUrl}/items/${id}`, {
+function deleteItem(_id) {
+  return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { coordinates } from "../../utils/constants";
@@ -22,7 +22,7 @@ function App() {
     city: "",
   });
 
-  const [cardToDelete, setCardToDelete] = useState(null);
+  const cardToDelete = useRef(null);
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
@@ -53,7 +53,7 @@ function App() {
     return addItem({ name, weather: weatherType, imageUrl })
       .then((res) => {
         setClothingItems((prevItems) => [
-          { name, imageUrl, weather: weatherType, id: res.id },
+          { name, imageUrl, weather: weatherType, _id: res._id },
           ...prevItems,
         ]);
       })
@@ -69,15 +69,16 @@ function App() {
   const handleCardDelete = (card) => {
     setIsLoading(false);
     setActiveModal("delete");
-    setCardToDelete(card);
+    cardToDelete.current = card;
   };
 
   const handleConfirmCardDelete = () => {
+    console.log("Card to delete:", cardToDelete.current);
     setIsLoading(true);
-    deleteItem(cardToDelete.id)
+    deleteItem(cardToDelete.current._id)
       .then((res) => {
         setClothingItems((items) =>
-          items.filter((item) => item.id !== cardToDelete.id)
+          items.filter((item) => item._id !== cardToDelete.current._id)
         );
         closeActiveModal();
       })
@@ -198,6 +199,7 @@ function App() {
         />
         <DeleteItemModal
           activeModal={activeModal}
+          card={selectedCard}
           onConfirm={handleConfirmCardDelete}
           onClose={closeActiveModal}
           isOpen={activeModal === "delete"}
