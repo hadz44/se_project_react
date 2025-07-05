@@ -67,22 +67,29 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    setIsLoading(false);
     setActiveModal("delete");
     cardToDelete.current = card;
   };
 
   const handleConfirmCardDelete = () => {
     console.log("Card to delete:", cardToDelete.current);
+    if (!cardToDelete.current || !cardToDelete.current._id) {
+      console.error("No card to delete or missing _id");
+      return;
+    }
     setIsLoading(true);
     deleteItem(cardToDelete.current._id)
       .then((res) => {
+        console.log("Item deleted successfully:", res);
         setClothingItems((items) =>
           items.filter((item) => item._id !== cardToDelete.current._id)
         );
         closeActiveModal();
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.error("Error deleting item:", err);
+        alert("Failed to delete item. Please try again.");
+      })
       .finally(() => {
         setIsLoading(false);
       });
@@ -199,7 +206,7 @@ function App() {
         />
         <DeleteItemModal
           activeModal={activeModal}
-          card={selectedCard}
+          card={cardToDelete.current}
           onConfirm={handleConfirmCardDelete}
           onClose={closeActiveModal}
           isOpen={activeModal === "delete"}

@@ -14,7 +14,7 @@ function DeleteItemModal({
   const handleOnConfirmDelete = (e) => {
     console.log("Delete itemModal:", card);
     e.preventDefault();
-    onConfirm(card);
+    onConfirm();
   };
 
   return (
