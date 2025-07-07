@@ -1,28 +1,5 @@
 /* Removed common modal styles */
 
-.modal {
-  position: fixed;
-  top: -210px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
-  font-family: "Cabinet Grotesk", sans-serif;
-  border: 1px solid #0000004d;
-}
-
-.modal_opened {
-  visibility: visible;
-  opacity: 1;
-  transition-delay: 0s;
-}
-
 .modal__title {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
@@ -77,15 +54,16 @@
 .modal__content-form {
   background-color: #fff;
   padding: 28px;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
   position: relative;
   width: 100%;
   max-width: 496px;
   box-sizing: border-box;
   max-height: 436px;
-  height: 100%;
+  height: 436px;
   display: flex;
   flex-direction: column;
+  margin-top: 120px;
 }
 
 .modal__form {

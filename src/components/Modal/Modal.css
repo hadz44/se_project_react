@@ -1,6 +1,6 @@
 .modal {
   position: fixed;
-  top: 20px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -8,11 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  padding-top: 0;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   font-family: "Cabinet Grotesk", sans-serif;
-  border: 1px solid #0000004d;
+  z-index: 1;
+  cursor: auto;
 }
 
 .modal_opened {
@@ -51,9 +53,58 @@
   border-radius: 20px;
   position: relative;
   box-sizing: border-box;
-  height: 436px;
   width: 496px;
+  height: 436px;
   display: flex;
   flex-direction: column;
-  /* cursor: url("../assets/Union.png"), pointer; */
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  top: 193px;
+  margin-top: 0;
+}
+
+.delete-modal .modal__container {
+  margin-top: 400px; /* Make the Delete modal container much lower */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .modal {
+    padding-top: 12vh;
+  }
+  .modal__container {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 20px);
+    padding: 16px;
+  }
+  
+  .modal__close {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal {
+    padding-top: 8vh;
+  }
+  .modal__container {
+    border-radius: 10px;
+    max-height: calc(100vh - 10px);
+    padding: 12px;
+  }
+  
+  .modal__close {
+    top: 12px;
+    right: 12px;
+    width: 25px;
+    height: 25px;
+  }
+  
+  .modal__close img {
+    width: 16px;
+    height: 16px;
+  }
 } 

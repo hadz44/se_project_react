@@ -31,12 +31,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
     },
     {
-      "_id": "9",
-      "name": "Sandals",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41"
-    },
-    {
       "_id": "10",
       "name": "Scarf",
       "weather": "cold",
@@ -73,70 +67,10 @@
       "weather": "cold"
     },
     {
-      "_id": "80e0",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "hot"
-    },
-    {
-      "_id": "662b",
-      "name": "Sunglasses",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
-      "weather": "hot"
-    },
-    {
-      "_id": "3060",
-      "name": "Sunglasses",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
-      "weather": "hot"
-    },
-    {
-      "_id": "d8e6",
-      "name": "Sunglasses",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df5115043",
-      "weather": "hot"
-    },
-    {
-      "_id": "q3dg",
-      "name": "Sunglasses",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df5115043",
-      "weather": "hot"
-    },
-    {
-      "_id": "gnbn",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "hot"
-    },
-    {
-      "_id": "z88e",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "hot"
-    },
-    {
-      "_id": "pqw9",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "warm"
-    },
-    {
       "_id": "n76y",
       "name": "Sunglasses",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
       "weather": "warm"
-    },
-    {
-      "_id": "ownl",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "warm"
-    },
-    {
-      "_id": "xvid",
-      "name": "T-shirt",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-      "weather": "hot"
     }
   ]
 }

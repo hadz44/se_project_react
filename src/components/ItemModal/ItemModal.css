@@ -1,33 +1,11 @@
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  font-family: "Cabinet Grotesk", sans-serif;
-}
-
-.modal__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.modal_opened {
-  visibility: visible;
-}
-
 .modal__content {
   position: relative;
   z-index: 2;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .modal__content_type_image {
@@ -41,18 +19,17 @@
   background-color: white;
   border-radius: 20px;
   box-sizing: border-box;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  margin-top: 120px; /* Increase this value to lower the whole image modal container */
 }
 
 .modal__image {
   display: block;
-  width: 498px;
-  height: 498px;
-  object-fit: contain;
-  background-color: white;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  overflow: hidden;
-  box-sizing: border-box;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .modal__footer_container {
@@ -63,6 +40,7 @@
   border-bottom-left-radius: 16px;
   font-weight: 700;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 .modal__footer {
   font-family: "Cabinet Grotesk", sans-serif;
@@ -91,4 +69,56 @@
   position: static;
   transform: none;
   margin: 0;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .modal__content {
+    padding: 10px;
+  }
+  
+  .modal__content_type_image {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 20px);
+  }
+  
+  .modal__image {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+  }
+  
+  .modal__footer_container {
+    padding: 8px 16px;
+    height: auto;
+    min-height: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal__content {
+    padding: 5px;
+  }
+  
+  .modal__content_type_image {
+    border-radius: 10px;
+    max-height: calc(100vh - 10px);
+  }
+  
+  .modal__image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-height: 40vh;
+  }
+  
+  .modal__footer_container {
+    padding: 8px 12px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .modal__delete {
+    font-size: 14px;
+  }
 }
