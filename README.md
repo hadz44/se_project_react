@@ -21,31 +21,38 @@ A React-based weather application that provides real-time weather updates and cl
 
 ## Backend Repository
 
-### Current Development Backend
-This project currently uses **json-server** as a development backend for rapid prototyping and testing:
+### Backend Implementation
+This project has a dedicated Express.js backend repository for production use:
 
-- **Repository**: Local development backend using json-server
-- **Port**: 3001
-- **Database**: `db.json` file with items and users collections
-- **Routes**: Custom routes defined in `routes.json`
+- **Repository**: [https://github.com/hadz44/se_project_express](https://github.com/hadz44/se_project_express)
+- **Framework**: Express.js with Node.js
+- **Database**: MongoDB or similar persistent storage
+- **Authentication**: JWT token generation and validation
 - **Endpoints**: 
   - `GET /items` - Fetch clothing items
-  - `POST /signup` - User registration (maps to `/users`)
-  - `POST /signin` - User authentication (maps to `/users`)
-  - `PATCH /users/me` - Update user profile (maps to `/users/1`)
-  - `GET /users/me` - Get current user info (maps to `/users/1`)
+  - `POST /signup` - User registration
+  - `POST /signin` - User authentication
+  - `PATCH /users/me` - Update user profile
+  - `GET /users/me` - Get current user info
+  - `POST /items` - Add new clothing item
+  - `DELETE /items/:id` - Delete clothing item
+  - `PUT /items/:id/likes` - Like clothing item
+  - `DELETE /items/:id/likes` - Unlike clothing item
 
-### Production Backend Requirements
-For production deployment, you'll need to create a separate backend repository with:
+### Development Setup
+For local development, you can use either:
 
-- **Framework**: Express.js, Node.js, or similar
-- **Database**: MongoDB, PostgreSQL, or similar persistent storage
-- **Authentication**: JWT token generation and validation
-- **Security**: Password hashing, CORS configuration, input validation
-- **API Endpoints**: All current endpoints with proper error handling
-- **Environment Variables**: Secure configuration management
+1. **Express Backend** (Recommended):
+   - Clone the backend repository: `git clone https://github.com/hadz44/se_project_express.git`
+   - Follow the setup instructions in the backend repository
+   - Update the `BASE_URL` in `src/utils/api.js` and `src/utils/auth.js` to point to your backend
 
-**Backend Repository**: [To be created - Link will be added here when backend is implemented]
+2. **JSON Server** (Quick testing):
+   - Run `npm run server` to start the local json-server
+   - Uses `db.json` for data storage
+   - Limited functionality for testing purposes
+
+**Backend Repository**: [https://github.com/hadz44/se_project_express](https://github.com/hadz44/se_project_express)
 
 ## Getting Started
 
@@ -121,4 +128,4 @@ This project is licensed under the MIT License.
 ## Contact
 
 - **Project Link**: [https://github.com/hadz44/se_project_react](https://github.com/hadz44/se_project_react)
-- **Backend Repository**: [To be created - Link will be added here when backend is implemented]
+- **Backend Repository**: [https://github.com/hadz44/se_project_express](https://github.com/hadz44/se_project_express)
