@@ -27,22 +27,25 @@ This project currently uses **json-server** as a development backend for rapid p
 - **Repository**: Local development backend using json-server
 - **Port**: 3001
 - **Database**: `db.json` file with items and users collections
+- **Routes**: Custom routes defined in `routes.json`
 - **Endpoints**: 
   - `GET /items` - Fetch clothing items
-  - `POST /signup` - User registration
-  - `POST /signin` - User authentication
-  - `PATCH /users/me` - Update user profile
-  - `GET /users/me` - Get current user info
+  - `POST /signup` - User registration (maps to `/users`)
+  - `POST /signin` - User authentication (maps to `/users`)
+  - `PATCH /users/me` - Update user profile (maps to `/users/1`)
+  - `GET /users/me` - Get current user info (maps to `/users/1`)
 
-### Production Backend (To Be Implemented)
+### Production Backend Requirements
 For production deployment, you'll need to create a separate backend repository with:
 
-- **User Authentication**: JWT token generation and validation
-- **Database**: Persistent storage (MongoDB, PostgreSQL, etc.)
-- **API Endpoints**: All current endpoints plus additional security features
+- **Framework**: Express.js, Node.js, or similar
+- **Database**: MongoDB, PostgreSQL, or similar persistent storage
+- **Authentication**: JWT token generation and validation
+- **Security**: Password hashing, CORS configuration, input validation
+- **API Endpoints**: All current endpoints with proper error handling
 - **Environment Variables**: Secure configuration management
 
-**Note**: Update this section with your actual backend repository link when created.
+**Backend Repository**: [To be created - Link will be added here when backend is implemented]
 
 ## Getting Started
 
@@ -117,5 +120,5 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-- **Project Link**: [Your Project URL]
-- **Backend Repository**: [Your Backend Repo URL - To Be Added]
+- **Project Link**: [https://github.com/hadz44/se_project_react](https://github.com/hadz44/se_project_react)
+- **Backend Repository**: [To be created - Link will be added here when backend is implemented]
