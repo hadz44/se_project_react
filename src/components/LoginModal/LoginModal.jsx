@@ -33,13 +33,13 @@ function LoginModal({ onClose, isOpen, onLogin, isLoading }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email{" "}
         <input
           required
           type="email"
           className="modal__input"
-          id="email"
+          id="login-email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
@@ -47,13 +47,13 @@ function LoginModal({ onClose, isOpen, onLogin, isLoading }) {
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password{" "}
         <input
           required
           type="password"
           className="modal__input"
-          id="password"
+          id="login-password"
           name="password"
           placeholder="Password"
           onChange={handleChange}

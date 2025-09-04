@@ -51,13 +51,13 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
         />
       </label>
 
-      <label htmlFor="imageUrl" className="modal__label modal__label_image-url">
+      <label htmlFor="add-item-imageUrl" className="modal__label modal__label_image-url">
         Image{" "}
         <input
           required
           type="url"
           className="modal__input"
-          id="imageUrl"
+          id="add-item-imageUrl"
           name="imageUrl"
           placeholder="Image URL"
           minLength="1"
@@ -67,10 +67,10 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type: </legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
+        <label htmlFor="add-item-hot" className="modal__label modal__label_type_radio">
           <input
             required
-            id="hot"
+            id="add-item-hot"
             type="radio"
             className="modal__radio-input"
             name="weatherType"
@@ -80,9 +80,9 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
           />
           Hot
         </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
+        <label htmlFor="add-item-warm" className="modal__label modal__label_type_radio">
           <input
-            id="warm"
+            id="add-item-warm"
             type="radio"
             className="modal__radio-input"
             name="weatherType"
@@ -92,9 +92,9 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
           />
           Warm
         </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
+        <label htmlFor="add-item-cold" className="modal__label modal__label_type_radio">
           <input
-            id="cold"
+            id="add-item-cold"
             type="radio"
             className="modal__radio-input"
             name="weatherType"
