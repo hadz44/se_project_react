@@ -1,3 +1,6 @@
 {
-  "/items/:_id": "/items?id=:_id"
+  "/items/:_id": "/items?id=:_id",
+  "/signup": "/users",
+  "/signin": "/users",
+  "/users/me": "/users/1"
 } 

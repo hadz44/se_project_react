@@ -4,7 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick, clothingItems = [] }) {
+function Main({ weatherData, handleCardClick, clothingItems = [], onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   console.log("Weather data in Main:", weatherData);
   console.log("Clothing items in Main:", clothingItems);
@@ -38,6 +38,7 @@ function Main({ weatherData, handleCardClick, clothingItems = [] }) {
                 key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
+                onCardLike={onCardLike}
               />
             );
           })}

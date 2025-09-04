@@ -1,5 +1,121 @@
-1. Project Weather App
+# Weather App - Clothing Recommendations
 
-2. This app dynamically updates weather in real-time and gives clothing suggestions based on current weather.
+A React-based weather application that provides real-time weather updates and clothing suggestions based on current weather conditions.
 
-3. I've used react/api that dynamically allow me to change/convert elements being displayed (i.e weather, degrees). I've used api to fetch several arrays (clothing and weather options) to be displayed. I've also used form validation which allow users to input information about a new clothing being added to profile and homepage.
+## Features
+
+- **Real-time Weather**: Dynamic weather updates with temperature conversion (Fahrenheit/Celsius)
+- **Clothing Recommendations**: Weather-appropriate clothing suggestions
+- **User Authentication**: Complete registration, login, and profile management system
+- **Personal Wardrobe**: Users can add, manage, and like clothing items
+- **Responsive Design**: Works seamlessly across all device sizes
+- **Like System**: Users can like/unlike clothing items with persistent state
+
+## Tech Stack
+
+- **Frontend**: React 18, React Router, Vite
+- **Styling**: CSS3 with custom design system
+- **State Management**: React Context API (CurrentUserContext, CurrentTemperatureUnitContext)
+- **Authentication**: JWT-based authentication system
+- **API**: RESTful API with fetch requests
+
+## Backend Repository
+
+### Current Development Backend
+This project currently uses **json-server** as a development backend for rapid prototyping and testing:
+
+- **Repository**: Local development backend using json-server
+- **Port**: 3001
+- **Database**: `db.json` file with items and users collections
+- **Endpoints**: 
+  - `GET /items` - Fetch clothing items
+  - `POST /signup` - User registration
+  - `POST /signin` - User authentication
+  - `PATCH /users/me` - Update user profile
+  - `GET /users/me` - Get current user info
+
+### Production Backend (To Be Implemented)
+For production deployment, you'll need to create a separate backend repository with:
+
+- **User Authentication**: JWT token generation and validation
+- **Database**: Persistent storage (MongoDB, PostgreSQL, etc.)
+- **API Endpoints**: All current endpoints plus additional security features
+- **Environment Variables**: Secure configuration management
+
+**Note**: Update this section with your actual backend repository link when created.
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone [your-frontend-repo-url]
+   cd se_project_react-master
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development backend**
+   ```bash
+   npm run server
+   ```
+
+4. **Start the frontend application**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173` (or the port shown in terminal)
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── App/            # Main application component
+│   ├── Header/         # Navigation and user info
+│   ├── Main/           # Homepage with weather and items
+│   ├── Profile/        # User profile page
+│   ├── Modals/         # Authentication and editing modals
+│   └── ...
+├── context/            # React Context providers
+├── hooks/              # Custom React hooks
+├── utils/              # API and utility functions
+└── assets/             # Images and static files
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/items` | Fetch all clothing items | No |
+| POST | `/signup` | User registration | No |
+| POST | `/signin` | User authentication | No |
+| GET | `/users/me` | Get current user info | Yes |
+| PATCH | `/users/me` | Update user profile | Yes |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+- **Project Link**: [Your Project URL]
+- **Backend Repository**: [Your Backend Repo URL - To Be Added]

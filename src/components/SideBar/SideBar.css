@@ -19,6 +19,20 @@
   object-fit: cover;
 }
 
+.sidebar__avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
 .sidebar__name {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;

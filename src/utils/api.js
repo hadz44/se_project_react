@@ -90,14 +90,21 @@ const getItems = () => {
 };
 
 const addItem = ({ name, imageUrl, weather }) => {
+  const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject('Error: No authorization token');
+  }
+
   try {
     const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    const newItem = {
-      _id: Date.now().toString(),
-      name,
-      imageUrl,
-      weather
-    };
+          const newItem = {
+        _id: Date.now().toString(),
+        name,
+        imageUrl,
+        weather,
+        owner: "1", // For now, hardcode to user ID 1 since we're using json-server
+        likes: []
+      };
     items.unshift(newItem);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     return Promise.resolve(newItem);
@@ -107,6 +114,11 @@ const addItem = ({ name, imageUrl, weather }) => {
 };
 
 const deleteItem = (_id) => {
+  const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject('Error: No authorization token');
+  }
+
   try {
     const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     const itemIndex = items.findIndex(item => item._id === _id);
@@ -122,8 +134,57 @@ const deleteItem = (_id) => {
   }
 };
 
+const addCardLike = (id, token) => {
+  if (!token) {
+    return Promise.reject('Error: No authorization token');
+  }
+
+  try {
+    const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const itemIndex = items.findIndex(item => item._id === id);
+    if (itemIndex !== -1) {
+      const item = items[itemIndex];
+      if (!item.likes) {
+        item.likes = [];
+      }
+      if (!item.likes.includes("1")) { // Add user ID 1 (hardcoded for json-server)
+        item.likes.push("1");
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      return Promise.resolve(item);
+    } else {
+      return Promise.reject('Error: Item not found');
+    }
+  } catch (error) {
+    return Promise.reject(`Error: ${error.message}`);
+  }
+};
+
+const removeCardLike = (id, token) => {
+  if (!token) {
+    return Promise.reject('Error: No authorization token');
+  }
+
+  try {
+    const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const itemIndex = items.findIndex(item => item._id === id);
+    if (itemIndex !== -1) {
+      const item = items[itemIndex];
+      if (item.likes) {
+        item.likes = item.likes.filter(userId => userId !== "1"); // Remove user ID 1
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      return Promise.resolve(item);
+    } else {
+      return Promise.reject('Error: Item not found');
+    }
+  } catch (error) {
+    return Promise.reject(`Error: ${error.message}`);
+  }
+};
+
 const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-export { getItems, addItem, deleteItem, handleServerResponse };
+export { getItems, addItem, deleteItem, addCardLike, removeCardLike, handleServerResponse };
