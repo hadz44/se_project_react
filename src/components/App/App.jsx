@@ -161,9 +161,10 @@ function App() {
         return login({ email, password });
       })
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        // For json-server, the response is the user object directly
+        localStorage.setItem("jwt", "fake-jwt-token"); // json-server doesn't generate real tokens
         setIsLoggedIn(true);
-        setCurrentUser(res.user);
+        setCurrentUser(res); // res is the user object directly from json-server
       })
       .catch((err) => {
         console.error("Error during registration:", err);
@@ -178,9 +179,11 @@ function App() {
     setIsLoading(true);
     return login({ email, password })
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        // For json-server, the response is the user object directly
+        // In a real backend, it would be res.user and res.token
+        localStorage.setItem("jwt", "fake-jwt-token"); // json-server doesn't generate real tokens
         setIsLoggedIn(true);
-        setCurrentUser(res.user);
+        setCurrentUser(res); // res is the user object directly from json-server
       })
       .catch((err) => {
         console.error("Error during login:", err);
