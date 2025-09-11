@@ -1,69 +1,83 @@
-# Weather App Backend API
+# Weather App - Frontend
 
-This is the backend API for the Weather App full-stack project.
+This is the React frontend for the Weather App full-stack project.
 
 ## Features
 
-- RESTful API for clothing items management
-- User authentication (JWT-based)
-- Like/unlike functionality for items
-- CORS enabled for frontend integration
+- React-based weather application
+- Clothing item management
+- User authentication and profiles
+- Like/unlike functionality for clothing items
+- Responsive design with modern UI
 
-## API Endpoints
+## Tech Stack
 
-### Items
-- `GET /items` - Get all clothing items
-- `POST /items` - Add new item (requires authentication)
-- `DELETE /items/:id` - Delete item (requires authentication)
-- `PUT /items/:id/likes` - Like an item (requires authentication)
-- `DELETE /items/:id/likes` - Unlike an item (requires authentication)
+- **React 18** - Frontend framework
+- **Vite** - Build tool and development server
+- **React Router** - Client-side routing
+- **CSS3** - Styling
 
-### Users
-- `GET /users` - Get all users
+## Getting Started
 
-### Health Check
-- `GET /health` - Server health status
+### Prerequisites
 
-## Installation
+- Node.js (version 14 or higher)
+- npm or yarn
 
-1. Install dependencies:
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/hadz44/se_project_react.git
+cd se_project_react
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start the server:
-```bash
-npm start
-```
-
-For development with auto-restart:
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-## Environment
+4. Open your browser and navigate to `http://localhost:5173`
 
-- **Port**: 3001 (default)
-- **Environment**: Development/Production
+## Available Scripts
 
-## Authentication
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run server` - Start json-server for development (simulates backend)
 
-The API uses Bearer token authentication. Include the token in the Authorization header:
+## Project Structure
+
 ```
-Authorization: Bearer <your-token>
+src/
+├── components/          # React components
+├── context/            # React context providers
+├── hooks/              # Custom React hooks
+├── utils/              # Utility functions
+└── assets/             # Static assets
 ```
 
-## CORS
+## Backend Integration
 
-CORS is enabled to allow requests from the frontend application.
+This frontend connects to a separate Express.js backend API. The backend repository is available at:
+- **Backend Repository**: `https://github.com/hadz44/react-backend`
 
-## Data Storage
+## Development
 
-Currently uses in-memory storage. In production, this would be replaced with a proper database (MongoDB, PostgreSQL, etc.).
+The application uses Vite for fast development with hot module replacement (HMR).
 
-## Frontend Integration
+## Production Build
 
-The frontend application should make requests to:
-- Base URL: `http://localhost:3001`
-- Items endpoint: `http://localhost:3001/items`
-- Users endpoint: `http://localhost:3001/users`
+To create a production build:
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
