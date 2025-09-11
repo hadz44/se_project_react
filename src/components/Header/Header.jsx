@@ -46,9 +46,6 @@ function Header({ handleAddClick, weatherData, isLoggedIn, onLoginClick, onRegis
               >
                 +Add clothes
               </button>
-              <Link to="/profile" className="header__link header__link_type_profile">
-                Profile
-              </Link>
               <Link to="/profile" className="header__link">
                 <div className="header__avatar-container">
                   <p className="header__username">{currentUser?.name || "User"}</p>

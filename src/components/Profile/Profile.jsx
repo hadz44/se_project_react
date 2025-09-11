@@ -7,6 +7,7 @@ function Profile({
   clothingItems,
   onAddClick,
   onCardClick,
+  onCardLike,
   onEditProfile,
   onLogout,
   weatherType,
@@ -21,6 +22,7 @@ function Profile({
           clothingItems={clothingItems}
           handleAddClick={onAddClick}
           onCardClick={onCardClick}
+          onCardLike={onCardLike}
           weatherType={weatherType}
           onSelectCard={onSelectCard}
           isLoggedIn={isLoggedIn}

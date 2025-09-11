@@ -24,7 +24,7 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
         onClose();
       })
       .catch((err) => {
-        console.error("Error adding item:", err);
+        console.error("Failed to add clothing item to wardrobe:", err);
       });
   };
 

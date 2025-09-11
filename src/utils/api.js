@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:3001';
 
 const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Server error: ${res.status} - ${res.statusText}`);
 };
 
 const getItems = () => {
@@ -9,10 +9,9 @@ const getItems = () => {
     .then(handleServerResponse);
 };
 
-const addItem = ({ name, imageUrl, weather }) => {
-  const token = localStorage.getItem('jwt');
+const addItem = ({ name, imageUrl, weather }, token) => {
   if (!token) {
-    return Promise.reject('Error: No authorization token');
+    return Promise.reject('Authentication error: No authorization token found for adding item');
   }
 
   return fetch(`${BASE_URL}/items`, {
@@ -25,10 +24,9 @@ const addItem = ({ name, imageUrl, weather }) => {
   }).then(handleServerResponse);
 };
 
-const deleteItem = (_id) => {
-  const token = localStorage.getItem('jwt');
+const deleteItem = (_id, token) => {
   if (!token) {
-    return Promise.reject('Error: No authorization token');
+    return Promise.reject('Authentication error: No authorization token found for deleting item');
   }
 
   return fetch(`${BASE_URL}/items/${_id}`, {
@@ -41,7 +39,7 @@ const deleteItem = (_id) => {
 
 const addCardLike = (id, token) => {
   if (!token) {
-    return Promise.reject('Error: No authorization token');
+    return Promise.reject('Authentication error: No authorization token found for liking item');
   }
 
   return fetch(`${BASE_URL}/items/${id}/likes`, {
@@ -55,7 +53,7 @@ const addCardLike = (id, token) => {
 
 const removeCardLike = (id, token) => {
   if (!token) {
-    return Promise.reject('Error: No authorization token');
+    return Promise.reject('Authentication error: No authorization token found for unliking item');
   }
 
   return fetch(`${BASE_URL}/items/${id}/likes`, {

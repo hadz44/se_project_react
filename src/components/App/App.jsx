@@ -60,16 +60,15 @@ function App() {
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
     setIsLoading(true);
-    return addItem({ name, weather: weatherType, imageUrl })
-      .then((res) => {
-        setClothingItems((prevItems) => [
-          { name, imageUrl, weather: weatherType, _id: res._id },
-          ...prevItems,
-        ]);
+    const token = localStorage.getItem("jwt");
+    return addItem({ name, weather: weatherType, imageUrl }, token)
+      .then((newItem) => {
+        // Use the complete item returned from the backend
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
       })
-      .then(closeActiveModal)
       .catch((err) => {
-        console.error("Error adding item:", err);
+        console.error("Failed to add clothing item to wardrobe:", err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -84,11 +83,12 @@ function App() {
   const handleConfirmCardDelete = () => {
     console.log("Card to delete:", cardToDelete.current);
     if (!cardToDelete.current || !cardToDelete.current._id) {
-      console.error("No card to delete or missing _id");
+      console.error("Cannot delete item: Missing item ID or invalid item reference");
       return;
     }
     setIsLoading(true);
-    deleteItem(cardToDelete.current._id)
+    const token = localStorage.getItem("jwt");
+    deleteItem(cardToDelete.current._id, token)
       .then((res) => {
         console.log("Item deleted successfully:", res);
         setClothingItems((items) =>
@@ -97,7 +97,7 @@ function App() {
         closeActiveModal();
       })
       .catch((err) => {
-        console.error("Error deleting item:", err);
+        console.error("Failed to delete clothing item from wardrobe:", err);
         alert("Failed to delete item. Please try again.");
       })
       .finally(() => {
@@ -111,13 +111,15 @@ function App() {
 
   const handleEditProfileSubmit = ({ name, avatar }) => {
     setIsLoading(true);
-    return updateProfile({ name, avatar })
+    const token = localStorage.getItem("jwt");
+    return updateProfile({ name, avatar }, token)
       .then((res) => {
         setCurrentUser(res);
         setIsLoggedIn(true);
+        closeActiveModal();
       })
       .catch((err) => {
-        console.error("Error updating profile:", err);
+        console.error("Failed to update user profile:", err);
         throw err;
       })
       .finally(() => {
@@ -136,7 +138,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch((err) => console.error("Failed to like clothing item:", err))
       : // if not, send a request to remove the user's id from the card's likes array
         removeCardLike(id, token)
           .then((updatedCard) => {
@@ -144,7 +146,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.error("Failed to unlike clothing item:", err));
   };
 
   const handleLogout = () => {
@@ -157,17 +159,17 @@ function App() {
     setIsLoading(true);
     return register({ name, avatar, email, password })
       .then((res) => {
-        // After successful registration, automatically log in
-        return login({ email, password });
+        // Store the real token from the server response
+        localStorage.setItem("jwt", res.token);
+        // Validate the token and set user state
+        return checkToken(res.token);
       })
-      .then((res) => {
-        // For json-server, the response is the user object directly
-        localStorage.setItem("jwt", "fake-jwt-token"); // json-server doesn't generate real tokens
+      .then((user) => {
         setIsLoggedIn(true);
-        setCurrentUser(res); // res is the user object directly from json-server
+        setCurrentUser(user);
       })
       .catch((err) => {
-        console.error("Error during registration:", err);
+        console.error("Failed to register new user account:", err);
         throw err;
       })
       .finally(() => {
@@ -179,14 +181,17 @@ function App() {
     setIsLoading(true);
     return login({ email, password })
       .then((res) => {
-        // For json-server, the response is the user object directly
-        // In a real backend, it would be res.user and res.token
-        localStorage.setItem("jwt", "fake-jwt-token"); // json-server doesn't generate real tokens
+        // Store the real token from the server response
+        localStorage.setItem("jwt", res.token);
+        // Validate the token and set user state
+        return checkToken(res.token);
+      })
+      .then((user) => {
         setIsLoggedIn(true);
-        setCurrentUser(res); // res is the user object directly from json-server
+        setCurrentUser(user);
       })
       .catch((err) => {
-        console.error("Error during login:", err);
+        console.error("Failed to authenticate user login:", err);
         throw err;
       })
       .finally(() => {
@@ -205,7 +210,7 @@ function App() {
           });
         },
         (error) => {
-          console.error("Error getting location:", error);
+          console.error("Failed to get user location, using default coordinates:", error);
           setUserLocation({
             latitude: 38.8918,
             longitude: -76.8894,
@@ -230,24 +235,24 @@ function App() {
           console.log("Weather data set:", filteredData);
           setWeatherData(filteredData);
         })
-        .catch(console.error);
+        .catch((error) => {
+          console.error("Failed to fetch weather data:", error);
+        });
     }
   }, [userLocation]);
 
   // Check token on app load
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     if (token) {
       checkToken(token)
-        .then((res) => {
+        .then((user) => {
           setIsLoggedIn(true);
-          setCurrentUser(res);
+          setCurrentUser(user);
         })
         .catch((err) => {
-          console.error("Token validation failed:", err);
-          localStorage.removeItem("jwt");
-          setIsLoggedIn(false);
-          setCurrentUser(null);
+          console.error('Failed to validate authentication token:', err);
+          localStorage.removeItem('jwt');
         });
     }
   }, []);
@@ -259,7 +264,7 @@ function App() {
         setClothingItems(data);
       })
       .catch((error) => {
-        console.error("Error fetching items:", error.message);
+        console.error("Failed to fetch clothing items from server:", error.message);
       });
   }, []);
 
@@ -298,6 +303,7 @@ function App() {
                       clothingItems={clothingItems}
                       onAddClick={handleAddClick}
                       onCardClick={handleCardClick}
+                      onCardLike={handleCardLike}
                       onEditProfile={handleEditProfile}
                       onLogout={handleLogout}
                       weatherType={weatherData.type}

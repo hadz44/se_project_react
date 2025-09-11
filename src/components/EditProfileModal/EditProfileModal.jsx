@@ -36,7 +36,7 @@ function EditProfileModal({ onClose, isOpen, onEditProfile, isLoading }) {
         onClose();
       })
       .catch((err) => {
-        console.error("Error updating profile:", err);
+        console.error("Failed to update user profile:", err);
       });
   };
 

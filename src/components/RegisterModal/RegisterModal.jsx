@@ -29,7 +29,7 @@ function RegisterModal({ onClose, isOpen, onRegister, isLoading }) {
         onClose();
       })
       .catch((err) => {
-        console.error("Error registering user:", err);
+        console.error("Failed to register new user account:", err);
       });
   };
 

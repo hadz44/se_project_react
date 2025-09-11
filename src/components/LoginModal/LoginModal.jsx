@@ -22,7 +22,7 @@ function LoginModal({ onClose, isOpen, onLogin, isLoading }) {
         onClose();
       })
       .catch((err) => {
-        console.error("Error logging in:", err);
+        console.error("Failed to authenticate user login:", err);
       });
   };
 

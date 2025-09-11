@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:3001';
 
 const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Server error: ${res.status} - ${res.statusText}`);
 };
 
 export const register = ({ name, avatar, email, password }) => {
@@ -34,10 +34,9 @@ export const checkToken = (token) => {
   }).then(handleServerResponse);
 };
 
-export const updateProfile = ({ name, avatar }) => {
-  const token = localStorage.getItem('jwt');
+export const updateProfile = ({ name, avatar }, token) => {
   if (!token) {
-    return Promise.reject('Error: No authorization token');
+    return Promise.reject('Authentication error: No authorization token found for profile update');
   }
 
   return fetch(`${BASE_URL}/users/me`, {
