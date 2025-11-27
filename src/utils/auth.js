@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3001';
+import { BASE_URL } from "../utils/constants";
 
 const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Server error: ${res.status} - ${res.statusText}`);
